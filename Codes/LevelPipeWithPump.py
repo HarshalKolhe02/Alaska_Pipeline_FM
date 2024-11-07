@@ -9,7 +9,7 @@ REST ALL THINGS CALCULATED AS DESCRIBED IN README.MD
 PaToAtm=9.8692e-6 #pascal to atm conversion factor e-6 means 10^-6
 RHO=865           # DENSITY OF OIL (kg/m^3)
 g=9.81            # ACCELERATION DUE TO GRAVITY (m/s^2)
-FHeadPerMeter=0.002301 # FRICTIONAL HEAD LOSS(m)
+FHeadPerMeter=0.0023666 # FRICTIONAL HEAD LOSS(m)
 
 ''' Lets assume only one pump(1000 psi)connected to the system at the initial location X=0 '''
 
@@ -43,7 +43,7 @@ plt.gca().xaxis.set_major_locator(tk.MultipleLocator(100))
 plt.plot(X,Pump,"Hr")
 plt.xlabel("Pipe Length (Km)")      #setting labels
 plt.ylabel("Pressure Inside Pipe (atm)")#setting labels
-plt.title("PRESSURE INSIDE PIPE WITH PUMPS") #setting labels
+plt.title("PRESSURE INSIDE PIPE WITH PUMPS ON FLAT TERRAIN") #setting labels
 plt.legend(["Pressure Profile","Pump Locations"])
 plt.show()  # Show the graph
 

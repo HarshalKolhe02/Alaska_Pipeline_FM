@@ -9,14 +9,14 @@ REST ALL THINGS CALCULATED AS DESCRIBED IN README.MD
 PaToAtm=9.8692e-6 #pascal to atm conversion factor e-6 means 10^-6
 RHO=865           # DENSITY OF OIL (kg/m^3)
 g=9.81            # ACCELERATION DUE TO GRAVITY (m/s^2)
-FHeadPerMeter=0.002301 # FRICTIONAL HEAD LOSS(m)
+FHeadPerMeter=0.0023666 # FRICTIONAL HEAD LOSS(m)
 
 ''' Lets assume only one pump(1000 psi)connected to the system at the initial location X=0 '''
 
 P_inital=68.046  #atm
 
 #defining arrays for storing pipeline length, Pressure values, and Friction losses 
-X=np.arange(0,1289,2) # ARRAY OF DISTANCES (KM)
+X=np.arange(0,1289,1) # ARRAY OF DISTANCES (KM)
 P=np.zeros(X.shape)      # ARRAY OF PRESSURE (m)
 FLoss=np.zeros(X.shape)  # ARRAY OF FRICTIONAL LOSSES (m)
 
