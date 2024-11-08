@@ -19,7 +19,7 @@ P_inital=68.046  #atm
 X=np.arange(0,1289,1) # ARRAY OF DISTANCES (KM)
 Z=np.zeros(X.shape)
 Z1=np.sin(np.radians(np.concatenate((np.linspace(0,90,45),np.linspace(90,180,46)))))
-Z2=np.sin(np.radians(np.concatenate((np.linspace(0,50,20),np.full((1,),50),np.linspace(50,0,30)))))
+Z2=np.sin(np.radians(np.concatenate((np.linspace(0,90,45),np.linspace(90,180,46)))))
 print(Z.shape)
 Z[400:400+len(Z1)]=Z1
 Z[700:700+len(Z2)]=Z2
@@ -46,9 +46,13 @@ plt.gca().xaxis.set_major_locator(tk.MultipleLocator(100))
 plt.xlabel("Pipe Length (Km)")      #setting labels
 plt.ylabel("Pressure Inside Pipe (atm)")#setting labels
 plt.title("PRESSURE INSIDE PIPE WITHOUT USING INLINE PUMP") #setting labels
+ax2 = plt.gca().twinx()
+ax2.plot(X, Z,color="gray",linestyle="dashed", label="ELEVATION (In KM)")
+ax2.set_ylabel("ELEVATION(Km)", color="gray")
+ax2.tick_params(axis="y", labelcolor="gray")
 plt.show()  # Show the graph
 
 # Sheet export
 data=np.vstack((X,Z,FLoss,P))
 df=pd.DataFrame(data.transpose(),columns=["Pipe Length (Km)","Elevation(Km)","Friction Pressure Loss (atm)","Resultant Pressure (atm)"])
-df.to_excel("Pressure_Profile_Without_Inline_Pump_Elevated.xlsx",index=False)
+df.to_excel("Pressure_Profile_Without_Pump_Elevated.xlsx",index=False)

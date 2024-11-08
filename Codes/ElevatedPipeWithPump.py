@@ -53,7 +53,7 @@ plt.title("PRESSURE INSIDE PIPE WITH PUMPS ON ELEVATED TERRAIN") #setting labels
 plt.legend(["Pressure Profile","Pump Locations"])
 ax2 = plt.gca().twinx()
 ax2.plot(X, Z,color="gray",linestyle="dashed", label="ELEVATION (In KM)")
-ax2.set_ylabel("ELEVATION", color="gray")
+ax2.set_ylabel("ELEVATION (KILOMETER)", color="gray")
 ax2.tick_params(axis="y", labelcolor="gray")
 plt.show()  # Show the graph
 
