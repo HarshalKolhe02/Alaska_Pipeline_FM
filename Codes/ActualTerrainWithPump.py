@@ -53,7 +53,7 @@ plt.gca().xaxis.set_major_locator(tk.MultipleLocator(100))
 plt.plot(X,Pump,"Hr")
 plt.xlabel("Pipe Length (Km)")      #setting labels
 plt.ylabel("Pressure Inside Pipe (atm)")#setting labels
-plt.title("PRESSURE INSIDE PIPE WITH PUMPS ON ELEVATED TERRAIN") #setting labels
+plt.title("PRESSURE INSIDE PIPE WITH PUMPS ON ACTUAL TERRAIN") #setting labels
 plt.legend(["Pressure Profile","Pump Locations"])
 ax2 = plt.gca().twinx()
 ax2.plot(X, Z,color="gray",linestyle="dashed", label="ELEVATION (In KM)")
@@ -70,4 +70,3 @@ df=df.fillna(0)
 df["Pump"]=df["Pump"].where(df["Pump"]==0,"ONE PUMP ADDED")
 print(df)
 df.to_excel("Pressure_Profile_With_Pump_ActualElevation.xlsx",index=False)
-print(P.max())
