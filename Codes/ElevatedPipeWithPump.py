@@ -14,7 +14,7 @@ FHeadPerMeter=0.0023666 # FRICTIONAL HEAD LOSS(m)
 ''' Lets assume only one pump(1000 psi)connected to the system at the initial location X=0 '''
 
 P_inital=68.046  #atm
-
+WPump=0
 #defining arrays for storing pipeline length, Pressure values, and Friction losses 
 X=np.arange(0,1289,1) # ARRAY OF DISTANCES (KM)
 Z=np.zeros(X.shape)
@@ -26,16 +26,22 @@ Z[700:700+len(Z2)]=Z2
 P=np.zeros(X.shape)      # ARRAY OF PRESSURE (m)
 FLoss=np.zeros(X.shape)  # ARRAY OF FRICTIONAL LOSSES (m)
 Pump=np.empty(X.shape)
+Pump_Work=np.zeros(X.shape) 
+ElevationLoss=np.zeros(X.shape)
 Pump[:]=np.nan
+Pump[0]=68.046
+Pump_Work[0]=68.046
 # LOOP FOR CALCULATIONS
 i=0 # Indexing variable
 for d in X :
     FLoss[i]=RHO*g*FHeadPerMeter*d*PaToAtm*1000 #Pascals converted to atm
-    P[i]=P_inital-FLoss[i]-RHO*g*Z[i]*PaToAtm*1000 
+    P[i]=P_inital-FLoss[i]-RHO*g*Z[i]*PaToAtm*1000+WPump
+    ElevationLoss[i]=RHO*g*Z[i]*PaToAtm*1000
     if P[i]<1.2 :
-        P_inital+=68.046
+        WPump+=68.046
         Pump[i]=P[i-1]
-        P[i]=P_inital-FLoss[i]-RHO*g*Z[i]*PaToAtm*1000 
+        P[i]=P_inital-FLoss[i]-RHO*g*Z[i]*PaToAtm*1000+WPump
+        Pump_Work[i]=68.046
     i+=1
 
 # def plain_format(x, pos): #Function to format numbers for graph
@@ -59,8 +65,8 @@ plt.show()  # Show the graph
 
 
 # Sheet export
-data=np.vstack((X,Z,FLoss,P,Pump))
-df=pd.DataFrame(data.transpose(),columns=["Pipe Length (Km)","Elevation(Km)","Friction Pressure Loss (atm)","Resultant Pressure (atm)","Pump"])
+data=np.vstack((X,Z,FLoss,ElevationLoss,Pump,Pump_Work,P))
+df=pd.DataFrame(data.transpose(),columns=["Pipe Length (Km)","Elevation(Km)","Friction Pressure Loss (atm)","Elevation Loss (atm)","Pump","Pump Work(atm)","Resultant Pressure (atm)"])
 df=df.fillna(0)
 df["Pump"]=df["Pump"].where(df["Pump"]==0,"ONE PUMP ADDED")
 print(df)
