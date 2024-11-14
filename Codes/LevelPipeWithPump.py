@@ -42,11 +42,11 @@ for d in X :
 plt.plot(X,P,"g")   # Plot the Graphsx
 plt.ylim((-20,80)) # Set Y axis limit
 plt.xlim((0,1400)) # Set X axis limit
-plt.gca().yaxis.set_major_locator(tk.MultipleLocator(5)) #set least count of axis 20
-plt.gca().xaxis.set_major_locator(tk.MultipleLocator(100))
-plt.plot(X,Pump,"Hr")
-plt.xlabel("Pipe Length (Km)")      #setting labels
-plt.ylabel("Pressure Inside Pipe (atm)")#setting labels
+plt.gca().yaxis.set_major_locator(tk.MultipleLocator(5)) #define the scale of plot
+plt.gca().xaxis.set_major_locator(tk.MultipleLocator(100)) #define the scale of plot
+plt.plot(X,Pump,"rH")
+plt.xlabel("Pipe Length (Km)")           #setting labels
+plt.ylabel("Pressure Inside Pipe (atm)") #setting labels
 plt.title("PRESSURE INSIDE PIPE WITH PUMPS ON FLAT TERRAIN") #setting labels
 plt.legend(["Pressure Profile","Pump Locations"])
 plt.show()  # Show the graph
@@ -54,7 +54,7 @@ plt.show()  # Show the graph
 
 # Sheet export
 data=np.vstack((X,FLoss,Pump,Pump_Work,P))
-df=pd.DataFrame(data.transpose(),columns=["Pipe Length (Km)","Friction Pressure Loss (atm)","Pump","Pump Pressure","Resultant Pressure (atm)",])
+df=pd.DataFrame(data.transpose(),columns=["Pipe Length (Km)","Friction Pressure Loss (atm)","Pump","Pump Pressure","Resultant Pressure (atm)"])
 df=df.fillna(0)
 df["Pump"]=df["Pump"].where(df["Pump"]==0,"ONE PUMP ADDED")
 print(df)
