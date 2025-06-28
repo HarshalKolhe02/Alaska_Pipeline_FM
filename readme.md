@@ -1,7 +1,7 @@
 # ALASKA PIPELINE PROJECT
 This is official repo of the alaska pipeline project made for the course of fluid mechanics.
 ## ASSUMPTIONS
-1. Pipeline is straight and have sape as per the terrain.
+1. Pipeline is straight and have shape as per the terrain.
 2. Bernoulli's Theorem hold for the flow.
 3. Tempreature is maintained at 30 $`^\circ`$C.
 4. The pipeline is always full. (No two-phase flow)
