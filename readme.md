@@ -1,8 +1,3 @@
----
-title: ALASKA PIPELINE PROJECT
-
----
-
 # ALASKA PIPELINE PROJECT
 This is official repo of the alaska pipeline project made for the course of fluid mechanics.
 ## ASSUMPTIONS
